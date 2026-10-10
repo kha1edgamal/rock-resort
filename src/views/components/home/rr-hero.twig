@@ -1,0 +1,19 @@
+{% set bg = component.image ?: ('images/rr/hero.jpg' | asset) %}
+{% set btn_url = component.button_url ?: '#' %}
+<section component-id="{{ componentId }}" data-testid="store-home-rr-hero" class="s-block rr-hero">
+  <div class="rr-hero__bg" style="background-image:url('{{ bg }}')"></div>
+  <div class="rr-hero__shade"></div>
+  <div class="container rr-hero__content">
+    {% if component.title %}<h2 class="rr-hero__title">{{ component.title }}</h2>{% endif %}
+    {% if component.subtitle %}<p class="rr-hero__subtitle">{{ component.subtitle }}</p>{% endif %}
+    {% if component.button_text %}
+      <a href="{{ btn_url }}" class="rr-btn rr-btn--outline rr-hero__btn">
+        <i class="sicon-compass"></i><span>{{ component.button_text }}</span>
+      </a>
+    {% endif %}
+  </div>
+  {% if component.show_scroll %}
+    <a href="#rr-after-hero" class="rr-hero__scroll" aria-label="scroll"><i class="sicon-keyboard_arrow_down"></i></a>
+  {% endif %}
+</section>
+<span id="rr-after-hero"></span>

@@ -1,0 +1,7 @@
+<section component-id="{{ componentId }}" data-testid="store-home-rr-about" class="s-block rr-section rr-about">
+  <div class="rr-art rr-art--about" aria-hidden="true"></div>
+  <div class="container">
+    {% if component.title %}<h2 class="rr-title">{{ component.title }}</h2>{% endif %}
+    {% if component.text %}<p class="rr-about__text">{{ component.text }}</p>{% endif %}
+  </div>
+</section>

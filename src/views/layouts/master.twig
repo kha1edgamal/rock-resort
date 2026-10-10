@@ -68,7 +68,7 @@
 
 
     <script data-cfasync="false">
-        window.header_is_sticky = "{{theme.settings.get('header_is_sticky', 'Default Value')}}"
+        window.header_is_sticky = "" // header behavior is handled by the Rock Resort header (rr-header)
         window.imageZoom = "{{theme.settings.get('imageZoom')}}"
         window.can_access_wallet = {{ user.can_access_wallet | json_encode }}
         window.enable_more_menu = "{{ theme.settings.get('enable_more_menu', true) }}"
@@ -80,16 +80,36 @@
     {% hook head %}
     {% block styles %}{% endblock %}
     <link rel="stylesheet" href="{{ 'app.css' | asset }}">
-    <link rel="stylesheet" href="{{ theme.font.path|cdn }}"/>
     <link rel="stylesheet" href="{{ 'fonts/sallaicons.css'|cdn }}"/>
     
     <style>
+        @font-face {
+            font-family: 'Thmanyah Serif';
+            src: url('{{ 'fonts/thmanyah-serif-text-light.otf' | asset }}') format('opentype');
+            font-weight: 300;
+            font-style: normal;
+            font-display: swap;
+        }
+        @font-face {
+            font-family: 'Thmanyah Serif';
+            src: url('{{ 'fonts/thmanyah-serif-text-regular.otf' | asset }}') format('opentype');
+            font-weight: 400;
+            font-style: normal;
+            font-display: swap;
+        }
+        @font-face {
+            font-family: 'Thmanyah Serif';
+            src: url('{{ 'fonts/thmanyah-serif-text-bold.otf' | asset }}') format('opentype');
+            font-weight: 700;
+            font-style: normal;
+            font-display: swap;
+        }
         :root {
-            --font-main: '{{theme.font.name}}';
-            --color-primary: {{ theme.color.primary }};
-            --color-primary-dark: {{ theme.color.darker(0.15) }};
-            --color-primary-light: {{ theme.color.lighter(0.15) }};
-            --color-primary-reverse: {{ theme.color.reverse_text }};
+            --font-main: 'Thmanyah Serif';
+            --color-primary: #7a3c0e; /* Rock Resort brand brown */
+            --color-primary-dark: #5c2b08;
+            --color-primary-light: #9a5424;
+            --color-primary-reverse: #ffffff;
             /* Theme specific variables */
             --s-radius: .75rem;
         }

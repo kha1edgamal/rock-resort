@@ -1,0 +1,13 @@
+{% set btn_url = component.button_url ?: '#' %}
+<section component-id="{{ componentId }}" data-testid="store-home-rr-cta" class="s-block rr-cta" {% if component.image %}style="background-image:linear-gradient(90deg,rgba(22,13,6,.78),rgba(105,41,14,.55)),url('{{ component.image }}')"{% endif %}>
+  <div class="container rr-cta__inner">
+    <div class="rr-cta__text">
+      {% if component.title %}<h2>{{ component.title }}</h2>{% endif %}
+      {% if component.subtitle %}<p>{{ component.subtitle }}</p>{% endif %}
+      {% if component.button_text %}
+        <a href="{{ btn_url }}" class="rr-btn rr-btn--outline">{{ component.button_text }}</a>
+      {% endif %}
+    </div>
+    <img class="rr-cta__logo" src="{{ 'images/rr/logo-light.png' | asset }}" alt="{{ store.name }}" loading="lazy" width="190" height="149">
+  </div>
+</section>

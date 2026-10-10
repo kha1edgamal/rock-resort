@@ -1,0 +1,20 @@
+{% set defaults = ['service-3.jpg','service-4.jpg','service-2.jpg','service-1.jpg'] %}
+<section component-id="{{ componentId }}" data-testid="store-home-rr-services" class="s-block rr-section rr-services">
+  <div class="container">
+    {% if component.title %}<h2 class="rr-title">{{ component.title }}</h2>{% endif %}
+    <div class="rr-services__grid">
+      {% for index, item in component.items %}
+        {% set img = item.image ?: (('images/rr/' ~ defaults[index % 4]) | asset) %}
+        {% set u = item.url ?: '#' %}
+        <a href="{{ u }}" class="rr-services__card rr-services__card--{{ loop.index }}">
+          <img src="{{ img }}" alt="{{ item.title }}" loading="lazy">
+          <span class="rr-services__shade"></span>
+          {% if item.description and loop.index == 3 %}
+            <span class="rr-services__desc">{{ item.description }}</span>
+          {% endif %}
+          <span class="rr-services__name">{{ item.title }}</span>
+        </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>

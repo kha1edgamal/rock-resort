@@ -1,0 +1,32 @@
+{% set display_all = component.display_all_url %}
+<section component-id="{{ componentId }}" data-testid="store-home-rr-prices" class="s-block rr-section rr-prices">
+  <div class="container">
+    {% if component.title %}<h2 class="rr-title">{{ component.title }}</h2>{% endif %}
+    {% if component.products|length %}
+      <salla-products-slider
+        data-testid="store-home-rr-prices-slider"
+        source="selected"
+        source-value="[{{ component.products|map((product) => product.id)|join(',') }}]"
+        {% if display_all != '' and display_all != '#' and display_all %}display-all-url="{{ display_all }}"{% endif %}
+        block-title=" "
+        slider-id="rr-prices-{{ position }}"
+      ></salla-products-slider>
+    {% else %}
+      {# Preview cards shown until products are selected from the dashboard #}
+      <div class="rr-prices__demo">
+        {% set demo = [['استقبال المطار','سيارة','750'],['الخيل','ساعة للشخص','150'],['باجيات','ساعات','300'],['سفاري الشاص','ساعتين للشخص','250']] %}
+        {% for d in demo %}
+          <article class="rr-demo-card">
+            <div class="rr-demo-card__img"><img src="{{ ('images/rr/product-' ~ loop.index ~ '.jpg') | asset }}" alt="{{ d[0] }}" loading="lazy"><span class="rr-demo-card__heart"><i class="sicon-heart"></i></span></div>
+            <div class="rr-demo-card__body">
+              <span class="rr-demo-card__cat">{{ d[1] }}</span>
+              <h3>{{ d[0] }}</h3>
+              <b class="rr-demo-card__price">{{ d[2] }} <small>ر.س</small></b>
+              <span class="rr-btn rr-btn--solid rr-btn--block"><i class="sicon-shopping-bag"></i> أضف للسلة</span>
+            </div>
+          </article>
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
+</section>

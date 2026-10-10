@@ -1,0 +1,22 @@
+{% set areas = ['a','b','c','d','e','f'] %}
+{% set cta_url = component.cta_url ?: '#' %}
+<section component-id="{{ componentId }}" data-testid="store-home-rr-gallery" class="s-block rr-section rr-gallery">
+  <div class="rr-art rr-art--gallery" aria-hidden="true"></div>
+  <div class="container">
+    {% if component.title %}<h2 class="rr-title">{{ component.title }}</h2>{% endif %}
+    <div class="rr-gallery__grid">
+      {% for index, item in component.items %}
+        {% set img = item.image ?: (('images/rr/gallery-' ~ loop.index ~ '.jpg') | asset) %}
+        <figure class="rr-gallery__item rr-gallery__item--{{ areas[index] ?? 'a' }}">
+          <img src="{{ img }}" alt="{{ item.alt ?: component.title }}" loading="lazy">
+        </figure>
+      {% endfor %}
+      {% if component.cta_title %}
+        <div class="rr-gallery__cta">
+          <h3>{{ component.cta_title }}</h3>
+          {% if component.cta_button %}<a href="{{ cta_url }}" class="rr-btn rr-btn--solid"><i class="sicon-arrow-up-left"></i> {{ component.cta_button }}</a>{% endif %}
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</section>

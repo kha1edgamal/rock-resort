@@ -1,0 +1,17 @@
+{% set link = component.map_link %}
+<section component-id="{{ componentId }}" data-testid="store-home-rr-map" class="s-block rr-section rr-map">
+  <div class="container">
+    {% if component.title %}<h2 class="rr-title">{{ component.title }}</h2>{% endif %}
+    <div class="rr-map__frame">
+      {% if component.embed_url %}
+        <iframe src="{{ component.embed_url }}" loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade" title="{{ component.title }}"></iframe>
+      {% else %}
+        <img src="{{ 'images/rr/map.jpg' | asset }}" alt="" loading="lazy">
+        <span class="rr-map__pin"><i class="sicon-location"></i></span>
+      {% endif %}
+      {% if link and link != '#' and component.map_link_text %}
+        <a href="{{ link }}" target="_blank" rel="noopener" class="rr-btn rr-btn--solid rr-map__open"><i class="sicon-location"></i> {{ component.map_link_text }}</a>
+      {% endif %}
+    </div>
+  </div>
+</section>

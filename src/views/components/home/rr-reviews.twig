@@ -1,0 +1,24 @@
+<section component-id="{{ componentId }}" data-testid="store-home-rr-reviews" class="s-block rr-section rr-reviews">
+  <div class="container">
+    {% if component.title %}<h2 class="rr-title">{{ component.title }}</h2>{% endif %}
+    <salla-slider id="rr-reviews-{{ position }}-slider" type="carousel" slides-per-view="3" show-controls="false" auto-play class="rr-reviews__slider">
+      <div slot="items">
+        {% for index, item in component.items %}
+          <div class="swiper-slide rr-review">
+            <span class="rr-review__quote" aria-hidden="true">”</span>
+            <salla-rating-stars class="rr-review__stars" size="small" value="{{ item.stars ?: 5 }}"></salla-rating-stars>
+            <p class="rr-review__text">“{{ item.text }}”</p>
+            <div class="rr-review__who">
+              {% if item.avatar %}
+                <img src="{{ item.avatar }}" alt="{{ item.name }}" width="44" height="44" loading="lazy">
+              {% else %}
+                <span class="rr-review__initials">{{ item.name|slice(0,1) }}</span>
+              {% endif %}
+              <div><b>{{ item.name }}</b>{% if item.role %}<small>{{ item.role }}</small>{% endif %}</div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </salla-slider>
+  </div>
+</section>
