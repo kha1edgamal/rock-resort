@@ -1,7 +1,28 @@
 {% set bg = component.image ?: ('images/rr/hero.jpg' | asset) %}
 {% set btn_url = component.button_url ?: '#' %}
+{% set video = component.video_url ? component.video_url|trim : '' %}
+{% set is_youtube = video and ('youtube.com' in video or 'youtu.be' in video) %}
+{% set yt_id = '' %}
+{% if is_youtube %}
+  {% if 'youtu.be/' in video %}
+    {% set yt_id = video|split('youtu.be/')|last|split('?')|first|split('&')|first %}
+  {% elseif 'watch?v=' in video %}
+    {% set yt_id = video|split('watch?v=')|last|split('&')|first %}
+  {% elseif '/embed/' in video %}
+    {% set yt_id = video|split('/embed/')|last|split('?')|first %}
+  {% elseif '/shorts/' in video %}
+    {% set yt_id = video|split('/shorts/')|last|split('?')|first %}
+  {% endif %}
+{% endif %}
 <section component-id="{{ componentId }}" data-testid="store-home-rr-hero" class="s-block rr-hero">
   <div class="rr-hero__bg" style="background-image:url('{{ bg }}')"></div>
+  {% if video and not is_youtube %}
+    <video class="rr-hero__media" autoplay muted loop playsinline preload="metadata" poster="{{ bg }}" aria-hidden="true">
+      <source src="{{ video }}" type="video/{{ video|lower ends with '.webm' ? 'webm' : 'mp4' }}">
+    </video>
+  {% elseif is_youtube and yt_id %}
+    <iframe class="rr-hero__media rr-hero__media--yt" src="https://www.youtube-nocookie.com/embed/{{ yt_id }}?autoplay=1&mute=1&loop=1&playlist={{ yt_id }}&controls=0&modestbranding=1&playsinline=1&rel=0" title="{{ component.title }}" allow="autoplay; encrypted-media" tabindex="-1" aria-hidden="true" loading="lazy"></iframe>
+  {% endif %}
   <div class="rr-hero__shade"></div>
   <div class="container rr-hero__content">
     {% if component.title %}<h2 class="rr-hero__title">{{ component.title }}</h2>{% endif %}

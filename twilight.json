@@ -327,17 +327,32 @@
                     "type": "string",
                     "icon": "sicon-image",
                     "value": null,
-                    "label": "صورة الخلفية",
+                    "label": "صورة الخلفية (أو صورة الغلاف عند استخدام فيديو)",
                     "id": "image",
                     "format": "image",
                     "required": false,
                     "placeholder": null,
-                    "description": "* يفضل صورة عريضة بمقاس 1920×1080 بكسل",
+                    "description": "* صورة عريضة 1920×1080. تُستخدم كخلفية، وكصورة مؤقتة أثناء تحميل الفيديو إن وُجد",
                     "key": "b0a9180d-1352-4816-a35a-cdd922130da4",
                     "settings": {
                         "width": 1920,
                         "height": 1080
                     }
+                },
+                {
+                    "type": "string",
+                    "icon": "sicon-link",
+                    "label": "رابط فيديو الخلفية (اختياري)",
+                    "multilanguage": false,
+                    "id": "video_url",
+                    "value": null,
+                    "required": false,
+                    "format": "text",
+                    "description": "رابط مباشر لملف mp4 أو webm، أو رابط يوتيوب. عند إدخاله يظهر الفيديو بدل الصورة (يعمل تلقائياً بدون صوت وبتكرار).",
+                    "placeholder": "https://example.com/hero.mp4",
+                    "minLength": 0,
+                    "maxLength": 1000,
+                    "key": "d8a62c78-4d25-41b5-b0d8-8ccb5badcaa1"
                 },
                 {
                     "type": "string",
