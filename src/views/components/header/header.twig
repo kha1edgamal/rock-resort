@@ -5,6 +5,7 @@
 | cart.items_count | int     |                                 |
 | cart.total       | string  | Formatted total ex: "١٠٠ ر.س"   |
 #}
+{# Rock Resort header: transparent on home, logo centered, no top search bar #}
 {% set rr_is_home = is_page('index') %}
 <header data-testid="store-header" class="store-header rr-header {{ rr_is_home ? 'rr-header--home' : 'rr-header--solid' }}">
   <div id="mainnav" class="main-nav-container rr-header__bar">
